@@ -3,12 +3,39 @@
  */
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+
+    // Generic zip method
+    public static <T> List<T> zip(List<T> list1, List<T> list2) {
+        List<T> result = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while (i < list1.size() || j < list2.size()) {
+            if (i < list1.size()) {
+                result.add(list1.get(i));
+                i++;
+            }
+            if (j < list2.size()) {
+                result.add(list2.get(j));
+                j++;
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        List<Integer> nums1 = Arrays.asList(1, 3, 5, 7);
+        List<Integer> nums2 = Arrays.asList(2, 4, 6, 8);
+        List<Integer> mergedNumbers = zip(nums1, nums2);
+        System.out.println(mergedNumbers); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+        List<String> colors1 = Arrays.asList("Red", "Green", "Blue");
+        List<String> colors2 = Arrays.asList("White", "Black", "Orange", "Pink", "Fuschia");
+        List<String> mergedWords = zip(colors1, colors2);
+        System.out.println(mergedWords); // ["Red", "White", "Green", "Black", "Blue", "Orange", "Pink", "Fuschia"]
     }
 }
